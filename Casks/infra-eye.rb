@@ -4,7 +4,7 @@ cask "infra-eye" do
 
   url "https://github.com/mnshchtri/infra-eye/releases/download/desktop-v#{version}/InfraEye-macOS-arm64.dmg"
   name "InfraEye"
-  desc "Agentless observability platform — desktop app (SQLite-backed, no Docker required)"
+  desc "Agentless observability platform desktop app"
   homepage "https://github.com/mnshchtri/infra-eye"
 
   auto_updates false
