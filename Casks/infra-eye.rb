@@ -13,15 +13,15 @@ cask "infra-eye" do
 
   app "InfraEye.app"
 
+  zap trash: [
+    "~/Library/Application Support/InfraEye",
+    "~/Library/Saved Application State/com.wails.infraeye.savedState",
+  ]
+
   caveats <<~EOS
     InfraEye.app is ad-hoc signed (not notarized with an Apple Developer ID),
     so Gatekeeper may report it as damaged on first launch. If that happens, run:
       xattr -cr "#{appdir}/InfraEye.app"
     then open it again, or right-click the app and choose "Open".
   EOS
-
-  zap trash: [
-    "~/Library/Application Support/InfraEye",
-    "~/Library/Saved Application State/com.wails.infraeye.savedState",
-  ]
 end
