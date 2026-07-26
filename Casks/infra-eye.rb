@@ -9,7 +9,7 @@ cask "infra-eye" do
 
   auto_updates false
   depends_on arch: :arm64
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "InfraEye.app"
 
