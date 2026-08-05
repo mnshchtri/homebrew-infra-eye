@@ -13,15 +13,21 @@ cask "infra-eye" do
 
   app "InfraEye.app"
 
+  # InfraEye.app carries a valid ad-hoc signature, but it is not signed with an
+  # Apple Developer ID and has no notarization ticket, so Gatekeeper rejects it
+  # on assessment. Homebrew flags every download with com.apple.quarantine, and
+  # a quarantined app that fails assessment is what makes macOS show the
+  # misleading "InfraEye.app is damaged and can't be opened" dialog on first
+  # launch. Clearing the flag on the copy we just installed is exactly what the
+  # old caveat asked users to run by hand; doing it here means a plain
+  # `brew install --cask infra-eye` produces an app that opens.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/InfraEye.app"]
+  end
+
   zap trash: [
     "~/Library/Application Support/InfraEye",
     "~/Library/Saved Application State/com.wails.infraeye.savedState",
   ]
-
-  caveats <<~EOS
-    InfraEye.app is ad-hoc signed (not notarized with an Apple Developer ID),
-    so Gatekeeper may report it as damaged on first launch. If that happens, run:
-      xattr -cr "#{appdir}/InfraEye.app"
-    then open it again, or right-click the app and choose "Open".
-  EOS
 end
