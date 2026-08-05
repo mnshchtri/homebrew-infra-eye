@@ -1,6 +1,6 @@
 cask "infra-eye" do
-  version "1.6.0"
-  sha256 "f605b98dac383df39d8c0521683900c29fde7599ff7ec0c9ee77f66e97c9deeb"
+  version "1.6.1"
+  sha256 "3eb1f00e8db72735977f6c7f17842639de562d5f655b2bd70ba9b549f9366a4c"
 
   url "https://github.com/mnshchtri/infra-eye/releases/download/desktop-v#{version}/InfraEye-macOS-arm64.dmg"
   name "InfraEye"
